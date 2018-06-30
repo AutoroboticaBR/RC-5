@@ -1,0 +1,9 @@
+Message[301] C:\ARQUIVOS DE PROGRAMAS\MICROCHIP\MPASM SUITE\P16F84.INC 37 : MESSAGE: (Processor-header file mismatch.  Verify selected processor.)
+Error[113]   C:\DOCUMENTS AND SETTINGS\RAUL\DESKTOP\RC 5\LED.ASM 45 : Symbol not previously defined (RPO)
+Message[302] C:\DOCUMENTS AND SETTINGS\RAUL\DESKTOP\RC 5\LED.ASM 47 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\DOCUMENTS AND SETTINGS\RAUL\DESKTOP\RC 5\LED.ASM 49 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Error[113]   C:\DOCUMENTS AND SETTINGS\RAUL\DESKTOP\RC 5\LED.ASM 50 : Symbol not previously defined (RPO)
+Error[113]   C:\DOCUMENTS AND SETTINGS\RAUL\DESKTOP\RC 5\LED.ASM 69 : Symbol not previously defined (T1)
+Error[113]   C:\DOCUMENTS AND SETTINGS\RAUL\DESKTOP\RC 5\LED.ASM 75 : Symbol not previously defined (l)
+Error[113]   C:\DOCUMENTS AND SETTINGS\RAUL\DESKTOP\RC 5\LED.ASM 77 : Symbol not previously defined (l)
+Error[129]   C:\DOCUMENTS AND SETTINGS\RAUL\DESKTOP\RC 5\LED.ASM 83 : Expected (END)

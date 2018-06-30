@@ -1,0 +1,4 @@
+Message[302] D:\MEUS DOCUMENTOS\PROJETOS\ROBO VASOURA\ROBO VASOURA 2.ASM 92 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] D:\MEUS DOCUMENTOS\PROJETOS\ROBO VASOURA\ROBO VASOURA 2.ASM 95 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[202] D:\MEUS DOCUMENTOS\PROJETOS\ROBO VASOURA\ROBO VASOURA 2.ASM 112 : Argument out of range.  Least significant bits used.
+Warning[202] D:\MEUS DOCUMENTOS\PROJETOS\ROBO VASOURA\ROBO VASOURA 2.ASM 114 : Argument out of range.  Least significant bits used.

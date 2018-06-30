@@ -1,0 +1,4 @@
+Message[301] C:\ARQUIVOS DE PROGRAMAS\MICROCHIP\MPASM SUITE\P16F628A.INC 35 : MESSAGE: (Processor-header file mismatch.  Verify selected processor.)
+Message[302] C:\DOCUMENTS AND SETTINGS\RAUL\DESKTOP\RC 5\EX1.ASM 98 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\DOCUMENTS AND SETTINGS\RAUL\DESKTOP\RC 5\EX1.ASM 101 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\DOCUMENTS AND SETTINGS\RAUL\DESKTOP\RC 5\EX1.ASM 103 : Register in operand not in bank 0.  Ensure that bank bits are correct.

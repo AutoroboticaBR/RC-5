@@ -1,0 +1,194 @@
+MPASM  5.02                           LED.ASM   1-13-2008  21:45:50         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;Revista Mecatronica Fácil 
+                      00002 ;programa LED.ASM pisca led 
+                      00003 ;com PIC16F84A Mareio Soares
+                      00004 ;************************************************
+                      00005 
+                      00006         list P=16F84    ;listagem
+                      00007         radix dec               ;valores decimal
+                      00008         include <P16F84.INC>    ;inclue arquivo
+                      00001         LIST
+                      00002 ; P16F84.INC  Standard Header File, Version 2.00    Microchip Technology, Inc.
+Message[301]: MESSAGE: (Processor-header file mismatch.  Verify selected processor.)
+                      00136         LIST
+                      00009 
+                      00010 ;*************************************************
+                      00011 ;* Variáveis necessárias para o programa
+                      00012 ;*************************************************
+                      00013  
+  00000000            00014 PICRES  equ     0x00    ;vetor de reset    
+  00000001            00015 CHAR    equ     0x01    ;var caracter      
+  00000002            00016 TEMP    equ     0x02    ;var de uso geral          
+  00000003            00017 Tl              equ     0x03    ;var para timer    
+  00000004            00018 T2              equ     0x04    ;var para o timer
+  00000005            00019 LED             equ 0x05           
+                      00020 
+                      00021 ;******************************************************  
+                      00022 ;*define memória de programa e vetor de reset
+                      00023 ;***************************************************
+                      00024                 org  PICRES  ;reset
+0000                  00025 meureset                         ;cria label meureset
+0000   2???           00026                 goto inicio  ;desvia end 0x04 -int
+                      00027 
+                      00028 ;**************************************************
+                      00029 ;*endereço e rotina de interrupção
+                      00030 ;**************************************************
+                      00031                 org  4  ;toda int aponta p/ aqui
+                      00032                                 ;não há ints, retorno apenas 
+0004   0009           00033                 retfie   ;retorno de interrupção
+                      00034 
+                      00035 ;*************************************************
+                      00036 ;inicio do programa
+                      00037 ;************************************************* 
+0005                  00038 inicio:
+0005   3000           00039                 movlw  0x00             ;ajuste  bit INTCON  
+0006   008B           00040                 movwf  INTCON   ;INTCON com O 
+                      00041                                                 ;desabilita as int
+0007   0185           00042                 clrf    PORTA   ;limpo registro do
+0008   0186           00043                 clrf    PORTB   ;limpo registro do port B
+                      00044 
+Error[113]  : Symbol not previously defined (RPO)
+0009   1403           00045                 bsf     STATUS,RPO      ;seleciona banco
+000A   3000           00046                 movlw   0x00    ;ajusta os bits
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+000B   0085           00047                 movwf   TRISA   ;A como saida
+MPASM  5.02                           LED.ASM   1-13-2008  21:45:50         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000C   3000           00048                 movlw   0x00    ;ajusta os bits
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+000D   0086           00049                 movwf   TRISB   ;B como saida ;volta ao banco 
+Error[113]  : Symbol not previously defined (RPO)
+000E   1003           00050                 bcf     STATUS,RPO      ;volta ao banco 0 (padrão do reset)
+                      00051 ;*************************************************** 
+                      00052 ;subrotina pisca led
+                      00053 ;***************************************************
+000F                  00054 piscaled:
+000F   1685           00055                  bsf PORTA,LED  ;acende o led
+0010   2???           00056                 call tempo              ;aguarda tempo
+0011   1285           00057                  bcf PORTA,LED  ;apaga led
+0012   2???           00058                 call tempo              ;aguarda tempo
+0013   2???           00059                 goto piscaled   ;volta para fazer 
+                      00060                                                 ;infinitamente
+                      00061 
+                      00062 ;***************************************************
+                      00063 ;subrotina para temporizar, sem o uso do
+                      00064 ;temporizador interno
+                      00065 ;**************************************************
+                      00066  
+0014                  00067 tempo:                                  ;aguarda        l segundo no total
+0014   30FF           00068                 movlw 255               ;carrega W com 255
+Error[113]  : Symbol not previously defined (T1)
+0015   0080           00069                 movwf T1                ;carrega Tl com W
+0016                  00070 car_l:          
+0016   30FF           00071                 movlw 255               ;carrega W com 255
+0017   0084           00072                 movwf T2                        ;carrega T2 com 255
+                      00073  
+0018                  00074 dec_l:
+Error[113]  : Symbol not previously defined (l)
+0018   0B04           00075                 decfsz T2,l             ;decrementa T2
+0019   2???           00076                 goto  dec_l     ;255 x Tl vezes 
+Error[113]  : Symbol not previously defined (l)
+001A   0B03           00077                 decfsz Tl,l             ;decrementa Tl
+001B   2???           00078                 goto car_l              ;volta a carregar
+001C   3400           00079                 retlw  0x00             ;rétorna O em W
+                      00080 ;*****************************************************
+                      00081 ;* fim do programa
+                      00082 ;*****************************************************
+Error[129]  : Expected (END)
+MPASM  5.02                           LED.ASM   1-13-2008  21:45:50         PAGE  3
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+C                                 00000000
+CHAR                              00000001
+DC                                00000001
+EEADR                             00000009
+EECON1                            00000088
+EECON2                            00000089
+EEDATA                            00000008
+EEIE                              00000006
+EEIF                              00000004
+F                                 00000001
+FSR                               00000004
+GIE                               00000007
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+LED                               00000005
+NOT_PD                            00000003
+NOT_RBPU                          00000007
+NOT_TO                            00000004
+OPTION_REG                        00000081
+PCL                               00000002
+PCLATH                            0000000A
+PICRES                            00000000
+PORTA                             00000005
+PORTB                             00000006
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+RBIE                              00000003
+RBIF                              00000000
+RD                                00000000
+RP0                               00000005
+RP1                               00000006
+STATUS                            00000003
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+T2                                00000004
+TEMP                              00000002
+TMR0                              00000001
+TRISA                             00000085
+TRISB                             00000086
+Tl                                00000003
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+MPASM  5.02                           LED.ASM   1-13-2008  21:45:50         PAGE  4
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_CP_OFF                           00003FFF
+_CP_ON                            0000000F
+_HS_OSC                           00003FFE
+_LP_OSC                           00003FFC
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FFD
+__16F84A                          00000001
+car_l                             00000016
+dec_l                             00000018
+inicio                            00000005
+meureset                          00000000
+piscaled                          0000000F
+tempo                             00000014
+
+Errors   :     6
+Warnings :     0 reported,     0 suppressed
+Messages :     3 reported,     0 suppressed
+
+
